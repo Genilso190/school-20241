@@ -5,3 +5,5 @@ export default function Home() {
     <h1 className="text-center">ESCOLA TECNOLÓGICA</h1>
   );
 }
+
+
