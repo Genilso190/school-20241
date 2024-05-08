@@ -9,14 +9,14 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className="">
-              <div>
-                <NavBar/>
-               <div>
-                <Aside/>
-                 {children}
-               </div>
-            </div>
-        </body>
+
+        <NavBar />
+        <div className="flex">
+          <Aside />
+          {children}
+        </div>
+
+      </body>
     </html>
   );
 }
