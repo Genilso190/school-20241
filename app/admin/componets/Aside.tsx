@@ -20,7 +20,15 @@ export default function Aside(className: any) {
                         <PersonStanding className="mr-2" />
                         Estudante
                     </Button>
-                </a>
+
+                    </a>
+                    <a href="/admin">
+                        <Button variant="ghost">
+                            <BookAIcon className="mr-2" />
+                            Curso
+                        </Button>
+                    </a>
+                    <h2 className="font-bold">Configurações</h2>
                 <a href="/admin">
                     <Button variant="ghost">
                         <BookAIcon className="mr-2" />
