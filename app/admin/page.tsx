@@ -1,5 +1,6 @@
 
 import { Button } from "@/components/ui/button"
+import { MenuSheet } from "./componets/MenuSheet"
 
 export default function () {
     return (
@@ -8,8 +9,9 @@ export default function () {
             <h1 className="">Bem vindo a Area Administrativa</h1>
             <Button>Salvar</Button>
             <Button variant="destructive">Excluir</Button>
-            <Button variant="secundary">Novo</Button>
-          
+            <Button variant="secondary">Novo</Button>
+
+          <MenuSheet/>
 
         </div>
     )
