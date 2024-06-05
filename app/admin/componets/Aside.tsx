@@ -22,7 +22,7 @@ export default function Aside(className: any) {
                     </Button>
 
                     </a>
-                    <a href="/admin">
+                    <a href="/admin/componets/course">
                         <Button variant="ghost">
                             <BookAIcon className="mr-2" />
                             Curso
