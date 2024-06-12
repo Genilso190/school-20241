@@ -32,6 +32,12 @@ export default async function Listcourse() {
     const response = await fetch("https://server20241-beige.vercel.app/courses/" + id, { method: "DELETE" });
   }
 
+  async function deleteCourses(formData: FormData){
+    "use server"
+    const id = formData.get("id") as string;
+    const response = await fetch("https://server20241-beige.vercel.app/courses/"+id, {method: "DELETE" });
+    revalidatePath("/admin/courses")
+  }
 
   return (
     <Table>
