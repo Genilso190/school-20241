@@ -50,6 +50,7 @@ return (
           <TableCell className="font-medium">{item.id}</TableCell>
           <TableCell>{item.name}</TableCell>
           <TableCell>{item.email}</TableCell>
+
           <TableCell>
             <form>
               <input type="text" name="id" hidden value={item.id} />
@@ -57,6 +58,7 @@ return (
               </form>
               </TableCell>
             </TableRow>
+            
       ))}
           </TableBody>
 

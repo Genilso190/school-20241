@@ -1,97 +1,68 @@
+import { Button } from "@/components/ui/button"
 import {
-    Table,
-    TableBody,
-    TableCaption,
-    TableCell,
-    TableFooter,
-    TableHead,
-    TableHeader,
-    TableRow,
-  } from "@/components/ui/table"
-  import { revalidatePath } from "next/cache"
-  
-  const invoices = [
-    {
-      invoice: "INV001",
-      paymentStatus: "Paid",
-      totalAmount: "$250.00",
-      paymentMethod: "Credit Card",
-    },
-    {
-      invoice: "INV002",
-      paymentStatus: "Pending",
-      totalAmount: "$150.00",
-      paymentMethod: "PayPal",
-    },
-    {
-      invoice: "INV003",
-      paymentStatus: "Unpaid",
-      totalAmount: "$350.00",
-      paymentMethod: "Bank Transfer",
-    },
-    {
-      invoice: "INV004",
-      paymentStatus: "Paid",
-      totalAmount: "$450.00",
-      paymentMethod: "Credit Card",
-    },
-    {
-      invoice: "INV005",
-      paymentStatus: "Paid",
-      totalAmount: "$550.00",
-      paymentMethod: "PayPal",
-    },
-    {
-      invoice: "INV006",
-      paymentStatus: "Pending",
-      totalAmount: "$200.00",
-      paymentMethod: "Bank Transfer",
-    },
-    {
-      invoice: "INV007",
-      paymentStatus: "Unpaid",
-      totalAmount: "$300.00",
-      paymentMethod: "Credit Card",
-    },
-  ]
-  
-  interface IStudent {
-    id: number,
-    name: string
-    email: string
+  Table,
+  TableBody,
+  TableCaption,
+  TableCell,
+  TableFooter,
+  TableHead,
+  TableHeader,
+  TableRow,
+} from "@/components/ui/table"
+import { revalidatePath } from "next/cache"
+
+interface ICourse {
+  id: number,
+  name: string
+  email: string
+}
+
+export default async function Listcourse() {
+  const courses = await list()
+  async function list() {
+    revalidatePath("/admin/course")
+    const response = await fetch("https://server20241-beige.vercel.app/courses")
+    return response.json();
+
   }
-  
-  export default async function Listcourse() {
-    const students = await list()
-    async function list() {
-      revalidatePath("/adim/student")
-      const response = await fetch("https://server20241-beige.vercel.app/courses")
-      return response.json();
-  
-    }
-  
-    return (
-      <Table>
-        <TableCaption>Lista de cursos</TableCaption>
-        <TableHeader>
-          <TableRow>
-            <TableHead className="w-[100px]">ID</TableHead>
-            <TableHead>Nome</TableHead>
-            
+
+  async function deleteCourse(formData: FormData) {
+    "use server"
+    const id = formData.get("id") as string;
+    const response = await fetch("https://server20241-beige.vercel.app/courses/" + id, { method: "DELETE" });
+  }
+
+
+  return (
+    <Table>
+      <TableCaption>Lista de cursos</TableCaption>
+      <TableHeader>
+        <TableRow>
+          <TableHead className="w-[100px]">ID</TableHead>
+          <TableHead>Nome</TableHead>
+          <TableHead>Ação</TableHead>
+
+        </TableRow>
+      </TableHeader>
+      <TableBody>
+        {courses.map((item: ICourse) => (
+          <TableRow key={item.id}>
+            <TableCell className="font-medium">{item.id}</TableCell>
+            <TableCell>{item.name}</TableCell>
+
+            <TableCell>
+              <form>
+                <input type="text" name="id" hidden value={item.id} />
+                <Button formAction={deleteCourse} variant="destructive">Excluir</Button>
+              </form>
+            </TableCell>
           </TableRow>
-        </TableHeader>
-        <TableBody>
-          {students.map((item: IStudent) => (
-            <TableRow key={item.id}>
-              <TableCell className="font-medium">{item.id}</TableCell>
-              <TableCell>{item.name}</TableCell>
-             
-  
-            </TableRow>
-          ))}
-        </TableBody>
-  
-      </Table>
-    )
-  }
-  
+        ))}
+      </TableBody>
+
+    </Table >
+  )
+}
+
+
+
