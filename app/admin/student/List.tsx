@@ -31,6 +31,7 @@ export default async function ListStudent() {
   "use server"
   const id = formData.get("id") as string;
   const response = await fetch("https://server20241-beige.vercel.app/students/"+id, {method: "DELETE" });
+  revalidatePath("/admin/student")
 }
 
 return (
@@ -58,7 +59,7 @@ return (
               </form>
               </TableCell>
             </TableRow>
-            
+
       ))}
           </TableBody>
 
