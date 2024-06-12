@@ -26,13 +26,7 @@ export default async function Listcourse() {
 
   }
 
-  async function deleteCourse(formData: FormData) {
-    "use server"
-    const id = formData.get("id") as string;
-    const response = await fetch("https://server20241-beige.vercel.app/courses/" + id, { method: "DELETE" });
-  }
-
-  async function deleteCourses(formData: FormData){
+  async function deleteCourse(formData: FormData){
     "use server"
     const id = formData.get("id") as string;
     const response = await fetch("https://server20241-beige.vercel.app/courses/"+id, {method: "DELETE" });
